@@ -18,6 +18,7 @@ import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
+
 public class Gradesystem1_page extends javax.swing.JFrame {
 
     /**
@@ -68,12 +69,12 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         gpaTF = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         remarksTF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        Clear = new javax.swing.JButton();
+        SubCalcbtn = new javax.swing.JButton();
+        Clearbtn = new javax.swing.JButton();
         Deletebtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         getStudentid = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Updatebtn = new javax.swing.JButton();
 
         jLabel13.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel13.setText("GPA:");
@@ -359,19 +360,19 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addContainerGap(137, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
-        jButton1.setText("Submit and Calculate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SubCalcbtn.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        SubCalcbtn.setText("Submit and Calculate");
+        SubCalcbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SubCalcbtnActionPerformed(evt);
             }
         });
 
-        Clear.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
-        Clear.setText("Clear");
-        Clear.addActionListener(new java.awt.event.ActionListener() {
+        Clearbtn.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        Clearbtn.setText("Clear");
+        Clearbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClearActionPerformed(evt);
+                ClearbtnActionPerformed(evt);
             }
         });
 
@@ -386,7 +387,15 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel11.setText("Search Student ID:");
 
-        jButton2.setText("Update");
+        Updatebtn.setText("Update");
+        Updatebtn.setMaximumSize(new java.awt.Dimension(72, 24));
+        Updatebtn.setMinimumSize(new java.awt.Dimension(72, 24));
+        Updatebtn.setPreferredSize(new java.awt.Dimension(72, 24));
+        Updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdatebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -401,15 +410,15 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getStudentid, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(Clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(SubCalcbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(Clearbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -419,12 +428,16 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(getStudentid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(getStudentid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Updatebtn, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,9 +446,9 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                         .addGap(33, 33, 33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(140, 140, 140)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SubCalcbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -477,7 +490,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_remarksTFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SubCalcbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubCalcbtnActionPerformed
 
         String Firstname = FnameTF.getText();
         String Lastname = LnameTF.getText();
@@ -493,6 +506,13 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         String Prelim = prelimgrade.getText();
         String Midterm = midtermgrade.getText();
         String Final = finalgrade.getText();
+        
+        if (Firstname.isEmpty() && Lastname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please input student info.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }if (Studentnumber.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please input student number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         //Declare remarks and gpa as variables
         String remarks = "";
@@ -569,17 +589,18 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             
             try (FileWriter Writer = new FileWriter("gradingmanagementsystem.txt", true)) {
                 Writer.write("First Name:" + " " + Firstname + " " + "Last Name:" + " " + 
-                        Lastname + " " + "Student Number:" + " " + Studentnumber + " " + 
-                        "Year Level:" + " " + Yearlevel + " " + "Prelim:" + " " + Prelimgrade + " " + "Midterm:" + " " 
-                        + Midtermgrade + " " + "Final:" + " "+ Finalgrade + " " + 
-                        "GPA:" + formattedGPA + " " + "Remarks:" + remarks);
+                            Lastname + " " + "Student Number:" + " " + Studentnumber + " " + 
+                            "Year Level:" + " " + Yearlevel + " " + "Prelim:" + " " + Prelimgrade + " " + "Midterm:" + " " 
+                            + Midtermgrade + " " + "Final:" + " "+ Finalgrade + " " + 
+                            "GPA:" + formattedGPA + " " + "Remarks:" + remarks);
                 
-                Writer.write(System.lineSeparator()); // Cross-platform compatibility
+                Writer.write(System.lineSeparator()); 
                 JOptionPane.showMessageDialog(null, "Successfully Submitted!");
                 
                 setVisible(false);
                 new Gradesystem1_page().setVisible(true);
-            } catch (Exception e) {
+                
+            }catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error writing to file!");
             }
 
@@ -591,12 +612,9 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Grade Error", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SubCalcbtnActionPerformed
 
-    
-    
-    
-    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+    private void ClearbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearbtnActionPerformed
         
         
         FnameTF.setText("");
@@ -616,7 +634,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         gpaTF.setText("");
         remarksTF.setText("");
         
-    }//GEN-LAST:event_ClearActionPerformed
+    }//GEN-LAST:event_ClearbtnActionPerformed
 
     private void YlevelTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YlevelTFActionPerformed
         // TODO add your handling code here:
@@ -634,7 +652,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Student number must be numeric value to delete .", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
 
-            }
+        }
 
         File inputFile = new File("gradingmanagementsystem.txt"); // Original file
         File tempFile = new File("temp.txt"); // Temporary file for writing updated content
@@ -659,35 +677,171 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             }
 
         // Show message based on whether the record was found or not
-        if (recordFound) {
-            JOptionPane.showMessageDialog(this, "Student record deleted successfully!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Student number not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (recordFound) {
+                JOptionPane.showMessageDialog(this, "Student record deleted successfully!");
+            }else {
+                JOptionPane.showMessageDialog(this, "Student number not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error reading/writing to file!", "File Error", JOptionPane.ERROR_MESSAGE);
         }
 
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error reading/writing to file!", "File Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    // After processing, delete the original file and rename temp file
-    if (recordFound) {
-        // Delete original file
-        if (inputFile.delete()) {
-            // Rename temp file to original filename
-            if (!tempFile.renameTo(inputFile)) {
-                JOptionPane.showMessageDialog(this, "Error renaming the file!", "File Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
+        // After processing, delete the original file and rename temp file
+        if (recordFound) {
+            // Delete original file
+            if (inputFile.delete()) {
+                // Rename temp file to original filename
+                if (!tempFile.renameTo(inputFile)) {
+                    JOptionPane.showMessageDialog(this, "Error renaming the file!", "File Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else {
             JOptionPane.showMessageDialog(this, "Error deleting the original file!", "File Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
+        }else {
         // If no record was found, delete the temp file to clean up
         tempFile.delete();  
     }
         
-
-
     }//GEN-LAST:event_DeletebtnActionPerformed
+
+    private void UpdatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatebtnActionPerformed
+        
+        String StudenttoUpdate = getStudentid.getText();
+    
+        // Check if student number is entered
+        if (StudenttoUpdate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a student number to update.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }if (!StudenttoUpdate.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Student number must be numeric value to delete .", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        
+        String updatedPrelimGrade = prelimgrade.getText();
+        String updatedMidtermGrade = midtermgrade.getText();
+        String updatedFinalGrade = finalgrade.getText();
+        
+        try {
+            double prelimGrade = Double.parseDouble(updatedPrelimGrade);
+            double midtermGrade = Double.parseDouble(updatedMidtermGrade);
+            double finalGrade = Double.parseDouble(updatedFinalGrade);
+        
+            if (prelimGrade < 0 || prelimGrade > 100) {
+                throw new IllegalArgumentException("Prelim grade must be between 0 and 100.");
+            }
+            if (midtermGrade < 0 || midtermGrade > 100) {
+                throw new IllegalArgumentException("Midterm grade must be between 0 and 100.");
+            }
+            if (finalGrade < 0 || finalGrade > 100) {
+                    throw new IllegalArgumentException("Final grade must be between 0 and 100.");
+            }
+        
+                
+        
+            File inputFile = new File("gradingmanagementsystem.txt"); // Original file
+            File tempFile = new File("temp.txt");
+        
+            boolean recordFound = false; // To check if the student number was found
+        
+            try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+                String currentLine;
+
+                // Loop through each line in the file
+                while ((currentLine = reader.readLine()) != null) {
+                    // Check if the line contains the student number to delete
+                    if (currentLine.contains("Student Number: " + StudenttoUpdate)) {
+                        recordFound = true;
+                
+                    String[] studentData = currentLine.split(" ");
+                    String firstName = studentData[2];
+                    String lastName = studentData[5];
+                    String studentNumber = studentData[8];
+                
+                    double average;
+                    double gpa;
+                    String remarks;
+
+                    // Calculate GPA based on the updated grades    
+                
+                    average = ((prelimGrade + midtermGrade + finalGrade) / 3);
+
+                    // GPA calculation logic (same as in your previous code)
+                    if (average >= 96) gpa = 1.0;
+                    else if (average >= 92) gpa = 1.25;
+                    else if (average >= 88) gpa = 1.50;
+                    else if (average >= 84) gpa = 1.75;
+                    else if (average >= 80) gpa = 2.0;
+                    else if (average >= 75) gpa = 2.25;
+                    else if (average >= 70) gpa = 2.50;
+                    else if (average >= 65) gpa = 2.75;
+                    else if (average >= 60) gpa = 3.0;
+                    else gpa = 5.0;
+
+                    if (gpa > 3.0) {
+                        remarks = "Failed";
+                    }else if (gpa >= 1.0 && gpa <= 3.0) {
+                        remarks = "Passed";
+                    }else {
+                        remarks = "Invalid";
+                    }
+                
+                    String updatedRecord = String.format(
+                        "First Name: %s Last Name: %s Student Number: %s Prelim: %.2f Midterm: %.2f "
+                        + "Final: %.2f GPA: %.2f Remarks: %s",firstName, lastName, studentNumber, prelimGrade, 
+                        midtermGrade, finalGrade, gpa, remarks
+                    );
+
+                    writer.write(updatedRecord);
+                    writer.newLine();
+                } else {
+
+                // Write all other lines to the temporary file
+                    writer.write(currentLine);
+                    writer.newLine();
+                    
+                    recordFound = true;
+                }
+            }
+        
+
+                // Show message based on whether the record was found or not
+                if (recordFound) {
+                    JOptionPane.showMessageDialog(this, "Student grade updated successfully!");
+                }else {
+                    JOptionPane.showMessageDialog(this, "Student number not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error reading/writing to file!", "File Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            // After processing, delete the original file and rename the temp file
+            if (recordFound) {
+                if (inputFile.delete()) {
+                    if (!tempFile.renameTo(inputFile)) {
+                        JOptionPane.showMessageDialog(this, "Error renaming the file!", "File Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(this, "Error deleting the original file!", "File Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else {
+                // If no record was found, delete the temp file to clean up
+                tempFile.delete();
+            }
+
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid input: Please enter valid numeric grades.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
+        
+    }//GEN-LAST:event_UpdatebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -725,19 +879,19 @@ public class Gradesystem1_page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Clear;
+    private javax.swing.JButton Clearbtn;
     private javax.swing.JButton Deletebtn;
     private javax.swing.JTextField FnameTF;
     private javax.swing.JTextField LnameTF;
     private javax.swing.JTextField StudentnoTF;
+    private javax.swing.JButton SubCalcbtn;
+    private javax.swing.JButton Updatebtn;
     private javax.swing.JComboBox<String> YlevelTF;
     private javax.swing.JTextField finalgrade;
     private javax.swing.JLabel firstname;
     private javax.swing.JLabel firstname1;
     private javax.swing.JTextField getStudentid;
     private javax.swing.JTextField gpaTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
