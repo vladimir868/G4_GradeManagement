@@ -8,6 +8,7 @@ package mycompany_pinnacle;
  *
  * @author admin
  */
+import java.io.FileWriter;
 import javax.swing.JOptionPane;
 public class Gradesystem1_page extends javax.swing.JFrame {
 
@@ -42,14 +43,13 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         FnameTF = new javax.swing.JTextField();
         LnameTF = new javax.swing.JTextField();
         StudentnoTF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        yearlevelTF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         prelimgrade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         midtermgrade = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         finalgrade = new javax.swing.JTextField();
+        YlevelTF = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
@@ -61,12 +61,12 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         lastname1 = new javax.swing.JLabel();
         yearlevel1 = new javax.swing.JLabel();
         studentnumber1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        averageTF = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         gpaTF = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         remarksTF = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        Clear = new javax.swing.JButton();
 
         jLabel13.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel13.setText("GPA:");
@@ -86,7 +86,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(114, 114, 114))
         );
@@ -136,22 +136,28 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
-        jButton1.setText("Submit and Calculate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel2.setText("Prelim grade:");
+
+        prelimgrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prelimgradeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel3.setText("Midterm grade:");
 
         jLabel10.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel10.setText("Final grade:");
+
+        YlevelTF.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        YlevelTF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1st year BSCpE", "2nd year BSCpE", "3rd year BSCpE", "4th year BSCpE" }));
+        YlevelTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YlevelTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -161,7 +167,6 @@ public class Gradesystem1_page extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +179,9 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(LnameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                                    .addComponent(yearlevelTF)))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(YlevelTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -209,16 +214,13 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(LnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(StudentnoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(yearlevelTF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(YlevelTF, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(StudentnoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prelimgrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,13 +229,11 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(midtermgrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(finalgrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(15, 15, 15)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(66, 66, 66))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -264,20 +264,25 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         studentnumber1.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
         studentnumber1.setText("___________");
 
-        jLabel11.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
-        jLabel11.setText("Average:");
-
-        averageTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                averageTFActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel12.setText("GPA:");
 
+        gpaTF.setEditable(false);
+        gpaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gpaTFActionPerformed(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
         jLabel14.setText("Remarks:");
+
+        remarksTF.setEditable(false);
+        remarksTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remarksTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -303,20 +308,15 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                             .addComponent(yearlevel1)
                             .addComponent(studentnumber1)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(averageTF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gpaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gpaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(remarksTF, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +333,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastname)
                     .addComponent(lastname1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearlevel)
                     .addComponent(yearlevel1))
@@ -341,11 +341,7 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentnumber)
                     .addComponent(studentnumber1))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(averageTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(73, 73, 73)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gpaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -353,8 +349,24 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(remarksTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
+
+        jButton1.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        jButton1.setText("Submit and Calculate");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        Clear.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        Clear.setText("Clear");
+        Clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -365,19 +377,31 @@ public class Gradesystem1_page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(Clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(148, 148, 148)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(73, 73, 73))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,195 +430,162 @@ public class Gradesystem1_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_StudentnoTFActionPerformed
 
+    private void gpaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpaTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gpaTFActionPerformed
+
+    private void prelimgradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prelimgradeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prelimgradeActionPerformed
+
+    private void remarksTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remarksTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_remarksTFActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
+
         String Firstname = FnameTF.getText();
         String Lastname = LnameTF.getText();
         String Studentnumber = StudentnoTF.getText();
-        String Yearlevel = yearlevelTF.getText();
+        String Yearlevel = YlevelTF.getSelectedItem().toString();
 
-        // Set the retrieved data to the respective labels
+        // Set the retrieved data to the respective labelZs
         firstname1.setText(Firstname);
         lastname1.setText(Lastname);
         studentnumber1.setText(Studentnumber);
         yearlevel1.setText(Yearlevel);
-        
+
         String Prelim = prelimgrade.getText();
         String Midterm = midtermgrade.getText();
         String Final = finalgrade.getText();
-      
-        double average;
+
+        //Declare remarks and gpa as variables
+        String remarks = "";
         double gpa = 0;
-      
         
         try {
-        // Check if student number is numeric
-        if (!Studentnumber.matches("\\d+")) {
-            throw new NumberFormatException("Student number must be numeric.");
+            // Check if student number is numeric
+            if (!Studentnumber.matches("\\d+")) {
+                throw new NumberFormatException("Student number must be numeric.");
+
+            }
             
-        }
             
             double Prelimgrade = Double.parseDouble(Prelim);
-        double Midtermgrade = Double.parseDouble(Midterm);
-        double Finalgrade = Double.parseDouble(Final);
-      
-      
-        if (Prelimgrade >= 96 && Prelimgrade < 100){
-            gpa = gpa + 1.0;
-            remarksTF.setText("Passed");
+            double Midtermgrade = Double.parseDouble(Midterm);
+            double Finalgrade = Double.parseDouble(Final);
             
-        }else if (Prelimgrade >= 92 && Prelimgrade < 95){
-            gpa = gpa + 1.25;
-            remarksTF.setText("Passed");
+            double average;
+            
+            
+            //Error check for if input grade exceeding to 100 or less than 0
+            if (Prelimgrade < 0 || Prelimgrade > 100) {
+                throw new IllegalArgumentException("Prelim grade must be between 0 and 100.");
+            }
+            if (Midtermgrade < 0 || Midtermgrade > 100) {
+                throw new IllegalArgumentException("Midterm grade must be between 0 and 100.");
+            }
+            if (Finalgrade < 0 || Finalgrade > 100) {
+                throw new IllegalArgumentException("Final grade must be between 0 and 100.");
+            }
+            
+            //Calculate Prelimgrade, Midterm and Final grade
+            average = ((Prelimgrade + Midtermgrade + Finalgrade) / 3);
 
-         
-        }else if (Prelimgrade >= 88 && Prelimgrade < 91){
-            gpa = gpa + 1.50;
-            remarksTF.setText("Passed");
             
-         
-        }else if (Prelimgrade >= 84 && Prelimgrade < 87){
-            gpa = gpa + 1.75;
-            remarksTF.setText("Passed");
-         
-        }else if (Prelimgrade >= 80 && Prelimgrade < 83){
-            gpa = gpa + 2.0;
-            remarksTF.setText("Passed");
+            //Check the condition of average to get gpa
+            if (average >= 96 && average <= 100) {
+                gpa = 1.0;
+            } else if (average >= 92 && average < 96) {
+                gpa = 1.25;
+            } else if (average >= 88 && average < 92) {
+                gpa = 1.50;
+            } else if (average >= 84 && average < 88) {
+                gpa = 1.75;
+            } else if (average >= 80 && average < 84) {
+                gpa = 2.0;
+            } else if (average >= 75 && average < 80) {
+                gpa = 2.25;
+            } else if (average >= 70 && average < 75) {
+                gpa = 2.50;
+            } else if (average >= 65 && average < 70) {
+                gpa = 2.75;
+            } else if (average >= 60 && average < 65) {
+                gpa = 3.0;
+            } else {
+                gpa = 5.0;
+            }
             
-        }else if (Prelimgrade >= 75 && Prelimgrade < 79){
-            gpa = gpa + 2.25;
-            remarksTF.setText("Passed");
-         
-        }else if (Prelimgrade >= 70 && Prelimgrade < 74){
-            gpa = gpa + 2.50;
-            remarksTF.setText("Passed");
-            
-        }else if (Prelimgrade >= 65 && Prelimgrade < 69){
-            gpa = gpa + 2.75;
-            remarksTF.setText("Passed");
+            //Check the condition of gpa to get remarks
+             if (gpa > 3.0) {
+                remarks = "Failed";
+            } else if (gpa >= 1.0 && gpa <= 3.0) {
+                remarks = "Passed";
+            } else {
+                remarks = "Invalid";
+            }
 
-        }else if (Prelimgrade >= 60 && Prelimgrade < 64){
-            gpa = gpa + 3.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Prelimgrade >= 0 && Prelimgrade < 59){
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }else {
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }
-        
-      if (Midtermgrade >= 96 && Midtermgrade < 100){
-            gpa = gpa + 1.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Midtermgrade >= 92 && Midtermgrade < 95){
-            gpa = gpa + 1.25;
-            remarksTF.setText("Passed");
-         
-        }else if (Midtermgrade >= 88 && Midtermgrade < 91){
-            gpa = gpa + 1.50;
-            remarksTF.setText("Passed");
-         
-        }else if (Midtermgrade >= 84 && Midtermgrade < 87){
-            gpa = gpa + 1.75;
-            remarksTF.setText("Passed");
-         
-        }else if (Midtermgrade >= 80 && Midtermgrade < 83){
-            gpa = gpa + 2.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Midtermgrade >= 75 && Midtermgrade < 79){
-            gpa = gpa + 2.25;
-            remarksTF.setText("Passed");
-         
-        }else if (Midtermgrade >= 70 && Midtermgrade < 74){
-            gpa = gpa + 2.50;
-            remarksTF.setText("Passed");
-            
-        }else if (Midtermgrade >= 65 && Midtermgrade < 69){
-            gpa = gpa + 2.75;
-            remarksTF.setText("Passed");
+            // Format the average and gpa to 2 decimal places
+            String formattedGPA = String.format("%.2f", gpa);
 
-        }else if (Midtermgrade >= 60 && Midtermgrade < 64){
-            gpa = gpa + 3.0;
-            remarksTF.setText("Passed");
+            // Set the formatted values to the text fields
+            gpaTF.setText(formattedGPA);
+            remarksTF.setText(remarks);
             
-        }else if (Midtermgrade >= 0 && Midtermgrade < 59){
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }
-         else {
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }
-          
-      
-        if (Finalgrade >= 96 && Finalgrade < 100){
-            gpa = gpa + 1.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Finalgrade >= 92 && Finalgrade < 95){
-            gpa = gpa + 1.25;
-            remarksTF.setText("Passed");
-         
-        }else if (Finalgrade >= 88 && Finalgrade < 91){
-            gpa = gpa + 1.50;
-            remarksTF.setText("Passed");
-         
-        }else if (Finalgrade >= 84 && Finalgrade < 87){
-            gpa = gpa + 1.75;
-            remarksTF.setText("Passed");
-         
-        }else if (Finalgrade >= 80 && Finalgrade < 83){
-            gpa = gpa + 2.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Finalgrade >= 75 && Finalgrade < 79){
-            gpa = gpa + 2.25;
-            remarksTF.setText("Passed");
-         
-        }else if (Finalgrade >= 70 && Finalgrade < 74){
-            gpa = gpa + 2.50;
-            remarksTF.setText("Passed");
-            
-        }else if (Finalgrade >= 65 && Finalgrade < 69){
-            gpa = gpa + 2.75;
-            remarksTF.setText("Passed");
+            try (FileWriter Writer = new FileWriter("gradingmanagementsystem.txt", true)) {
+                Writer.write("First Name:" + " " + Firstname + " " + "Last Name:" + " " + 
+                        Lastname + " " + "Student Number:" + " " + Studentnumber + " " + 
+                        "Year Level:" + " " + Yearlevel + " " + "Prelim:" + " " + Prelimgrade + " " + "Midterm:" + " " 
+                        + Midtermgrade + " " + "Final:" + " "+ Finalgrade + " " + 
+                        "GPA:" + formattedGPA + " " + "Remarks:" + remarks);
+                
+                Writer.write(System.lineSeparator()); // Cross-platform compatibility
+                JOptionPane.showMessageDialog(null, "Successfully Submitted!");
+                
+                setVisible(false);
+                new Gradesystem1_page().setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error writing to file!");
+            }
 
-        }else if (Finalgrade >= 60 && Finalgrade < 64){
-            gpa = gpa + 3.0;
-            remarksTF.setText("Passed");
-            
-        }else if (Finalgrade >= 0 && Finalgrade < 59){
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }
-         else {
-            gpa = gpa + 0;
-            remarksTF.setText("Failed");
-        }
-      
-        average = ((Prelimgrade + Midtermgrade + Finalgrade) / 3 );
-      
-        gpa = gpa / 3;
-        gpaTF.setText(Double.toString(gpa));
-        averageTF.setText(Double.toString(average));
-        
         }catch (NumberFormatException e) {
-        // Notify the user of invalid input
+            // Notify the user of invalid input
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
-    } 
-        
-        
-        
+        }catch (IllegalArgumentException e) {
+        // Notify the user of invalid grade range input
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Grade Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void averageTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_averageTFActionPerformed
+    
+    
+    
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+        
+        
+        FnameTF.setText("");
+        LnameTF.setText("");
+        StudentnoTF.setText("");
+        yearlevel1.setText("");
+
+        // Set the retrieved data to the respective labelZs
+        firstname1.setText("");
+        lastname1.setText("");
+        studentnumber1.setText("");
+
+        prelimgrade.setText("");
+        midtermgrade.setText("");
+        finalgrade.setText("");
+        
+        gpaTF.setText("");
+        remarksTF.setText("");
+        
+    }//GEN-LAST:event_ClearActionPerformed
+
+    private void YlevelTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YlevelTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_averageTFActionPerformed
+    }//GEN-LAST:event_YlevelTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -632,10 +623,11 @@ public class Gradesystem1_page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clear;
     private javax.swing.JTextField FnameTF;
     private javax.swing.JTextField LnameTF;
     private javax.swing.JTextField StudentnoTF;
-    private javax.swing.JTextField averageTF;
+    private javax.swing.JComboBox<String> YlevelTF;
     private javax.swing.JTextField finalgrade;
     private javax.swing.JLabel firstname;
     private javax.swing.JLabel firstname1;
@@ -643,7 +635,6 @@ public class Gradesystem1_page extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -671,6 +662,5 @@ public class Gradesystem1_page extends javax.swing.JFrame {
     private javax.swing.JLabel studentnumber1;
     private javax.swing.JLabel yearlevel;
     private javax.swing.JLabel yearlevel1;
-    private javax.swing.JTextField yearlevelTF;
     // End of variables declaration//GEN-END:variables
 }
